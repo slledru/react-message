@@ -6,12 +6,6 @@ import toggleEditMessage from '../actions/actionBeginEdit'
 import deleteMessage from '../actions/actionDeleteMessage'
 
 const Message = (props) => {
-  const onClickSave = (event) => {
-    event.preventDefault()
-    props.editMessage(props.message)
-    props.toggleEditMessage(props.message)
-  }
-
   const onClickDelete = (event) => {
     event.preventDefault()
     props.deleteMessage(props.message)
@@ -39,14 +33,7 @@ const Message = (props) => {
     )
   }
 
-  const displayEditable = () => {
-    return (
-      <AddMessageForm addMessage={ props.editMessage }
-        onClose={ onClickSave }
-        message={ props.message }
-        buttonText="Save"/>
-    )
-  }
+  const displayEditable = () => <AddMessageForm message={ props.message } buttonText="Save"/>
 
   if (props.message.inEditMode) {
     return (
