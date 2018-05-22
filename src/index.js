@@ -5,7 +5,7 @@ import { Provider } from 'react-redux'
 import thunk from 'redux-thunk'
 
 import './index.css'
-import App from './App'
+import App from './containers/App'
 import registerServiceWorker from './registerServiceWorker'
 
 import 'bootstrap/dist/css/bootstrap.css'
