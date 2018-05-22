@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import './App.css'
 import { GET_API } from './constants'
 import MessageList from './components/MessageList'
+import AddMessageForm from './components/AddMessageForm'
 
 class App extends Component {
   constructor(props) {
@@ -21,6 +22,7 @@ class App extends Component {
       <div className="App container">
         <h3>Q3 Assessment</h3>
         <MessageList messages={ this.state.messages } />
+        <AddMessageForm />
       </div>
     )
   }

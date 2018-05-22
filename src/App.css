@@ -36,6 +36,21 @@
   margin: 2px;
 }
 
+.form {
+  margin-top: 30px;
+  display: flex;
+  align-items: center;
+}
+
+.input-name {
+  margin-left: 10px;
+  width: 200px;
+}
+
+.input-message {
+  margin-left: 10px;
+  width: 400px;
+}
 @keyframes App-logo-spin {
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
