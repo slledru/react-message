@@ -1,16 +1,26 @@
 import React from 'react'
 
-const Message = ({ message }) => {
+const Message = (props) => {
+  const onClickEdit = (event) => {
+    event.preventDefault()
+    props.editMessage(props.message)
+  }
+
+  const onClickDelete = (event) => {
+    event.preventDefault()
+    props.deleteMessage(props.message)
+  }
+
   return (
     <div className="row message">
       <div className="col-xs-4 text-left">
-        { message.name }
+        { props.message.name }
       </div>
       <div className="col-xs-6 text-left">
-        { message.message }
+        { props.message.message }
       </div>
-      <button className="col-xs-1 btn btn-primary">Edit</button>
-      <button className="col-xs-1 btn btn-primary">Delete</button>
+      <button className="col-xs-1 btn btn-primary" onClick={ onClickEdit }>Edit</button>
+      <button className="col-xs-1 btn btn-primary" onClick={ onClickDelete }>Delete</button>
     </div>
   )
 }

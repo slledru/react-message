@@ -1,3 +1,3 @@
-const GET_API = `/messages`
+const API_URL = `/messages`
 
-export { GET_API }
+export { API_URL }

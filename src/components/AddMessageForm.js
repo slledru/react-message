@@ -6,6 +6,7 @@ class AddMessageForm extends Component {
     const name = document.querySelector('#name').value
     const message = document.querySelector('#message').value
     this.props.addMessage({ name, message })
+    document.querySelector('.form').reset()
   }
 
   render() {
