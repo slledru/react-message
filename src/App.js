@@ -7,16 +7,21 @@ import AddMessageForm from './components/AddMessageForm'
 class App extends Component {
   constructor(props) {
     super(props)
-    this.state = { messages: [] }
+    this.state = {
+      messages: [],
+      isOpen: false
+    }
   }
+
   async componentDidMount() {
     const response = await fetch(API_URL)
-    const json = await response.json()
-    this.setState({ ...this.state, messages: json })
+    if (response.status === 200) {
+      const json = await response.json()
+      this.setState({ ...this.state, messages: json })
+    }
   }
 
   addMessage = async ( body ) => {
-    console.log('addMessage', body)
     const response = await fetch(API_URL, {
       method: 'POST',
       body: JSON.stringify(body),
@@ -25,30 +30,50 @@ class App extends Component {
         'Accept': 'application/json',
       }
     })
-    const json = await response.json()
-    console.log('json', json)
-    this.setState({
-      ...this.state,
-      messages: [ json, ...this.state.messages ]
-    })
+    if (response.status === 200) {
+      const json = await response.json()
+      this.setState({
+        ...this.state,
+        messages: [ json, ...this.state.messages ]
+      })
+    }
   }
 
   deleteMessage = async ( message ) => {
-    console.log('deleteMessage', message)
     const response = await fetch(`${API_URL}/${message.id}`, {
       method: 'DELETE'
     })
-    const json = await response.json()
-    console.log('json', json)
-    this.setState({
-      ...this.state,
-      messages: [ ...this.state.messages.filter((msg) => msg.id !== message.id) ]
-    })
+    if (response.status === 200) {
+      const json = await response.json()
+      this.setState({
+        ...this.state,
+        messages: [ ...this.state.messages.filter((msg) => msg.id !== json.id) ]
+      })
+    }
   }
 
-  editMessage = ( message ) => {
-    console.log('editMessage', message)
-  }
+  editMessage = async ( message ) => {
+    const response = await fetch(`${API_URL}/${message.id}`, {
+      method: 'PATCH',
+      body: JSON.stringify(message),
+      headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json',
+      }
+    })
+    if (response.status === 200) {
+      const json = await response.json()
+      this.setState({
+        ...this.state,
+        messages: [ ...this.state.messages.map((msg) => {
+          if (msg.id === json.id) {
+            return message
+          }
+          return msg
+        }) ]
+      })
+    }
+}
 
   render() {
     return (
@@ -57,7 +82,7 @@ class App extends Component {
         <MessageList messages={ this.state.messages }
           deleteMessage={ this.deleteMessage }
           editMessage={ this.editMessage }/>
-        <AddMessageForm addMessage={ this.addMessage }/>
+        <AddMessageForm addMessage={ this.addMessage } buttonText="Add"/>
       </div>
     )
   }

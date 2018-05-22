@@ -11,7 +11,7 @@ class MessageList extends Component {
   }
   render() {
     return (
-      <div>
+      <div className="message-list">
         <div className="row App-header">
           <div className="col-xs-4 text-left">Name</div>
           <div className="col-xs-8 text-left">Message</div>

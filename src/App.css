@@ -23,6 +23,10 @@
   font-size: large;
 }
 
+.message-list {
+  margin-bottom: 30px;
+}
+
 .message {
   border-left: 1px solid #CDCDCD;
   border-right: 1px solid #CDCDCD;
@@ -37,9 +41,10 @@
 }
 
 .form {
-  margin-top: 30px;
   display: flex;
   align-items: center;
+  border: 1px solid #CDCDCD;
+  height: 50px;
 }
 
 .input-name {
@@ -51,6 +56,26 @@
   margin-left: 10px;
   width: 400px;
 }
+
+.backdrop {
+  background-color: rgba(0, 0, 0, 0.3);
+  bottom: 0;
+  left: 0;
+  padding: 50;
+  position: fixed;
+  right: 0;
+  top: 0;
+}
+
+.modal {
+  background-color: #fff;
+  border-radius: 5;
+  margin: 0 auto;
+  max-width: 500;
+  min-height: 300;
+  padding: 30;
+}
+
 @keyframes App-logo-spin {
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
