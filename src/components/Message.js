@@ -52,10 +52,12 @@ class Message extends Component {
     )
   }
   render() {
-    if (this.state.inEditMode) {
-      return this.displayEditable()
-    }
-    return this.displayReadonly()
+    return (
+      <div>
+        { this.displayReadonly() }
+        { this.state.inEditMode ? this.displayEditable() : null }
+      </div>
+    )
   }
 }
 
