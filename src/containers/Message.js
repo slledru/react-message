@@ -7,7 +7,6 @@ import deleteMessage from '../actions/actionDeleteMessage'
 
 const Message = (props) => {
   const onClickSave = (event) => {
-    console.log('Message:onClickSave')
     event.preventDefault()
     props.editMessage(props.message)
     props.toggleEditMessage(props.message)
@@ -32,8 +31,10 @@ const Message = (props) => {
         <div className="col-xs-6 text-left">
           { props.message.message }
         </div>
-        <button className="col-xs-1 btn btn-primary" onClick={ onClickEdit }>Edit</button>
-        <button className="col-xs-1 btn btn-primary" onClick={ onClickDelete }>Delete</button>
+        <button className="col-xs-1 btn btn-primary"
+          onClick={ onClickEdit } disabled={ props.message.inEditMode }>Edit</button>
+        <button className="col-xs-1 btn btn-primary"
+          onClick={ onClickDelete } disabled={ props.message.inEditMode }>Delete</button>
       </div>
     )
   }
