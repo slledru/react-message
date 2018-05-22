@@ -40,6 +40,11 @@ const messages = (state = [], action) => {
         })
       ]
 
+    case DELETE_MESSAGE:
+      return [
+        ...state.filter((msg) => msg.id !== action.payload.id)
+      ]
+
     default:
   }
   return state
