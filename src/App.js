@@ -33,8 +33,17 @@ class App extends Component {
     })
   }
 
-  deleteMessage = ( message ) => {
+  deleteMessage = async ( message ) => {
     console.log('deleteMessage', message)
+    const response = await fetch(`${API_URL}/${message.id}`, {
+      method: 'DELETE'
+    })
+    const json = await response.json()
+    console.log('json', json)
+    this.setState({
+      ...this.state,
+      messages: [ ...this.state.messages.filter((msg) => msg.id !== message.id) ]
+    })
   }
 
   editMessage = ( message ) => {
