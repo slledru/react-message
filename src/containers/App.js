@@ -4,7 +4,7 @@ import { bindActionCreators } from 'redux'
 import '../App.css'
 import { API_URL } from '../constants'
 import getMessages from '../actions/actionGetMessages'
-import MessageList from '../components/MessageList'
+import MessageList from './MessageList'
 import AddMessageForm from './AddMessageForm'
 
 class App extends Component {
@@ -17,31 +17,8 @@ class App extends Component {
   }
 
   componentDidMount() {
-    // const response = await fetch(API_URL)
-    // if (response.status === 200) {
-    //   const json = await response.json()
-    //   this.setState({ ...this.state, messages: json })
-    // }
     this.props.getMessages()
   }
-
-  // addMessage = async ( body ) => {
-  //   const response = await fetch(API_URL, {
-  //     method: 'POST',
-  //     body: JSON.stringify(body),
-  //     headers: {
-  //       'Content-Type': 'application/json',
-  //       'Accept': 'application/json',
-  //     }
-  //   })
-  //   if (response.status === 200) {
-  //     const json = await response.json()
-  //     this.setState({
-  //       ...this.state,
-  //       messages: [ json, ...this.state.messages ]
-  //     })
-  //   }
-  // }
 
   deleteMessage = async ( message ) => {
     const response = await fetch(`${API_URL}/${message.id}`, {
