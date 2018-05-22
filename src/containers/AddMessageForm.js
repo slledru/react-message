@@ -1,4 +1,7 @@
 import React, { Component } from 'react'
+import { connect } from 'react-redux'
+import { bindActionCreators } from 'redux'
+import addMessage from '../actions/actionAddMessage'
 
 class AddMessageForm extends Component {
   onClick = (event) => {
@@ -41,4 +44,12 @@ class AddMessageForm extends Component {
   }
 }
 
-export default AddMessageForm
+const mapStateToProps = (state) => {
+  return { ...state }
+}
+
+const mapDispatchToProps = (dispatch) => {
+  return bindActionCreators({ addMessage }, dispatch)
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(AddMessageForm)

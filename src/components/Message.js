@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import AddMessageForm from './AddMessageForm'
+import AddMessageForm from '../containers/AddMessageForm'
 
 class Message extends Component {
   constructor(props) {

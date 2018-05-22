@@ -7,6 +7,12 @@ const messages = (state = [], action) => {
         ...state,
         ...action.payload
       ]
+
+    case NEW_MESSAGE:
+      return [
+        ...state,
+        action.payload
+      ]
     default:
   }
   return state
