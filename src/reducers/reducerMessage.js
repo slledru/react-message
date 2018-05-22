@@ -21,14 +21,23 @@ const messages = (state = [], action) => {
       ]
 
     case BEGIN_EDIT_MESSAGE:
-      const newMessage = state.map((msg) => {
-        if (msg.id === action.payload) {
-          return { ...msg, inEditMode: !msg.inEditMode }
-        }
-        return msg
-      })
       return [
-        ...newMessage
+        ...state.map((msg) => {
+          if (msg.id === action.payload) {
+            return { ...msg, inEditMode: !msg.inEditMode }
+          }
+          return msg
+        })
+      ]
+
+    case EDIT_MESSAGE:
+      return [
+        ...state.map((msg) => {
+          if (msg.id === action.payload.id) {
+            return { ...action.payload, inEditMode: false }
+          }
+          return msg
+        })
       ]
 
     default:

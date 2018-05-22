@@ -3,11 +3,13 @@ import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import AddMessageForm from '../containers/AddMessageForm'
 import toggleEditMessage from '../actions/actionBeginEdit'
+import editMessage from '../actions/actionEditMessage'
 
 const Message = (props) => {
   const onClickSave = (event) => {
     console.log('Message:onClickSave')
     event.preventDefault()
+    props.editMessage(props.message)
     props.toggleEditMessage(props.message)
   }
 
@@ -59,7 +61,7 @@ const Message = (props) => {
 }
 
 const mapDispatchToProps = (dispatch) => {
-  return bindActionCreators({ toggleEditMessage }, dispatch)
+  return bindActionCreators({ toggleEditMessage, editMessage }, dispatch)
 }
 
 export default connect(null, mapDispatchToProps)(Message)

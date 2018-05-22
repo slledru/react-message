@@ -33,36 +33,12 @@ class App extends Component {
     }
   }
 
-  editMessage = async ( message ) => {
-    const response = await fetch(`${API_URL}/${message.id}`, {
-      method: 'PATCH',
-      body: JSON.stringify(message),
-      headers: {
-        'Content-Type': 'application/json',
-        'Accept': 'application/json',
-      }
-    })
-    if (response.status === 200) {
-      const json = await response.json()
-      this.setState({
-        ...this.state,
-        messages: [ ...this.state.messages.map((msg) => {
-          if (msg.id === json.id) {
-            return message
-          }
-          return msg
-        }) ]
-      })
-    }
-  }
 
   render() {
     return (
       <div className="App container">
         <h3>Q3 Assessment</h3>
-        <MessageList messages={ this.props.messages }
-          deleteMessage={ this.deleteMessage }
-          editMessage={ this.editMessage }/>
+        <MessageList />
         <AddMessageForm buttonText="Add"/>
       </div>
     )

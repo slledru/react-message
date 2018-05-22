@@ -2,20 +2,21 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import addMessage from '../actions/actionAddMessage'
+import editMessage from '../actions/actionEditMessage'
 
 const AddMessageForm = (props) => {
   const onClick = (event) => {
     event.preventDefault()
     const name = document.querySelector('#name').value
     const message = document.querySelector('#message').value
-    if (props.onClose) {
-      props.onClose(event)
-    }
     const newMessage = { name, message }
     if (props.message) {
       newMessage.id = props.message.id
+      props.editMessage(newMessage)
     }
-    props.addMessage(newMessage)
+    else {
+      props.addMessage(newMessage)
+    }
     document.querySelector('.form').reset()
   }
 
@@ -47,7 +48,7 @@ const mapStateToProps = (state) => {
 }
 
 const mapDispatchToProps = (dispatch) => {
-  return bindActionCreators({ addMessage }, dispatch)
+  return bindActionCreators({ addMessage, editMessage }, dispatch)
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(AddMessageForm)
