@@ -17,12 +17,16 @@ class App extends Component {
     this.setState({ ...this.state, messages: json })
   }
 
+  addMessage = ({ name, message }) => {
+    console.log('addMessage', name, message)
+  }
+
   render() {
     return (
       <div className="App container">
         <h3>Q3 Assessment</h3>
         <MessageList messages={ this.state.messages } />
-        <AddMessageForm />
+        <AddMessageForm addMessage={ this.addMessage }/>
       </div>
     )
   }
