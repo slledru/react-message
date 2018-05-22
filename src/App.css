@@ -1,5 +1,6 @@
 .App {
   text-align: center;
+  margin-top: 30px;
 }
 
 .App-logo {
@@ -8,9 +9,9 @@
 }
 
 .App-header {
-  background-color: #222;
-  height: 150px;
-  padding: 20px;
+  background-color: #888;
+  height: 40px;
+  padding: 10px;
   color: white;
 }
 
@@ -20,6 +21,19 @@
 
 .App-intro {
   font-size: large;
+}
+
+.message {
+  border-left: 1px solid #CDCDCD;
+  border-right: 1px solid #CDCDCD;
+  border-bottom: 1px solid #CDCDCD;
+  height: 45px;
+  display: flex;
+  align-items: center;
+}
+
+.message button {
+  margin: 2px;
 }
 
 @keyframes App-logo-spin {

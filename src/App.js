@@ -1,21 +1,29 @@
-import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from 'react'
+import './App.css'
+import { GET_API } from './constants'
+import MessageList from './components/MessageList'
 
 class App extends Component {
+  constructor(props) {
+    super(props)
+    this.state = { messages: [] }
+  }
+  async componentDidMount() {
+    console.log('here?')
+    const response = await fetch(GET_API)
+    const json = await response.json()
+    console.log(json)
+    this.setState({ ...this.state, messages: json })
+  }
+
   render() {
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
-        </header>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
+      <div className="App container">
+        <h3>Q3 Assessment</h3>
+        <MessageList messages={ this.state.messages } />
       </div>
-    );
+    )
   }
 }
 
-export default App;
+export default App
